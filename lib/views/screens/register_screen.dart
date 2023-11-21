@@ -1,7 +1,31 @@
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  // FirebaseAuth auth = FirebaseAuth.instance;
+
+  Future<void> register() async {
+    final String name = nameController.text;
+    final String email = emailController.text;
+    final String password = passwordController.text;
+    final String confirmPassword = confirmPasswordController.text;
+
+    if (password == confirmPassword) {
+      // var result = await auth.createUserWithEmailAndPassword(email: email, password: password);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +56,15 @@ class RegisterScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             TextFormField(
+              controller: nameController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(
+                labelText: 'Full name',
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 labelText: 'Email Address',
@@ -39,14 +72,23 @@ class RegisterScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              controller: passwordController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 labelText: 'Password',
               ),
             ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: confirmPasswordController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(
+                labelText: 'Confirm Password',
+              ),
+            ),
             const SizedBox(height: 32),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => openLoadingDialog(context),
               child: const SizedBox(
                 width: double.infinity,
                 height: 42,
@@ -72,7 +114,7 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(width: 8),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterScreen()));
                   },
                   child: const Text(
                     'Login',
@@ -89,5 +131,50 @@ class RegisterScreen extends StatelessWidget {
         ),
       ),
     ));
+  }
+}
+
+openLoadingDialog(BuildContext context) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return Container(
+          width: double.infinity,
+          height: 200,
+          color: Colors.white,
+          padding: const EdgeInsets.all(24),
+          child: const Column(
+            children: [
+              SizedBox(
+                height: 48,
+                width: 48,
+                child: CircularProgressIndicator(),
+              ),
+              Text(
+                'Loading ...',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                ),
+              ),
+            ],
+          ),
+        );
+      });
+}
+
+class VerfuEmail extends StatefulWidget {
+  const VerfuEmail({super.key});
+
+  @override
+  State<VerfuEmail> createState() => _VerfuEmailState();
+}
+
+class _VerfuEmailState extends State<VerfuEmail> {
+  final TextEditingController nameController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

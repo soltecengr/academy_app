@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'views/screens/login_screen.dart';
+import 'views/screens/dashboard/profile_screen.dart';
 
-void main() {
+void main() async {
   runApp(const SoltecAcademy());
 }
 
@@ -11,10 +11,9 @@ class SoltecAcademy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Soltec Academy',
-      home: const LoginScreen(),
+      home: ProfileScreen(),
     );
   }
 }
