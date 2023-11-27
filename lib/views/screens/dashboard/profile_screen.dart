@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -22,18 +23,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
       height: double.infinity,
       color: Colors.red,
     ),
-    const AccountPage(),
     Container(
       width: double.infinity,
       height: double.infinity,
       color: Colors.amber,
     ),
+    const AccountPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFeaeaea),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text('Soltec User \nDrawer Header',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                  )),
+            ),
+            ListTile(
+              onTap: () {
+                showToast('Home nav tapped');
+              },
+              leading: const Icon(Icons.home),
+              title: const Text('User Home'),
+              subtitle: const Text('Current login in user'),
+              trailing: const Icon(Icons.arrow_forward_ios, size: 18),
+              iconColor: Colors.blue,
+            ),
+            ListTile(
+              onTap: () {
+                showToast('Available course nav tapped');
+              },
+              leading: const Icon(Icons.view_list_outlined),
+              title: const Text('Available Courses'),
+              subtitle: const Text('View all course we offer'),
+              trailing: const Icon(Icons.arrow_forward_ios, size: 18),
+              iconColor: Colors.blue,
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('My Profile'),
@@ -44,10 +79,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         itemBuilder: (_, index) {
           return pages[index];
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.message),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
@@ -92,18 +123,19 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return const SizedBox.expand(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 32),
-          Image.asset(
-            'assets/images/user.png',
-            width: 96,
-            height: 96,
+          SizedBox(height: 32),
+          CircleAvatar(
+            radius: 40,
+            backgroundImage: AssetImage(
+              'assets/images/user.png',
+            ),
           ),
-          const SizedBox(height: 8),
-          const Text(
+          SizedBox(height: 8),
+          Text(
             'Chinnons Solomon',
             style: TextStyle(
               fontSize: 20,

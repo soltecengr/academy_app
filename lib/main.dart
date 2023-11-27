@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 
 import 'views/screens/dashboard/profile_screen.dart';
 
@@ -11,9 +12,11 @@ class SoltecAcademy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProfileScreen(),
+    return const OKToast(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: ProfileScreen(),
+      ),
     );
   }
 }
