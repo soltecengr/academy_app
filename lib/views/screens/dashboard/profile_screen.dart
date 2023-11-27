@@ -52,12 +52,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
+            currentPage = index;
             pageController.animateToPage(
-              index,
+              currentPage,
               duration: const Duration(milliseconds: 400),
               curve: Curves.linear,
             );
-            currentPage = index;
           });
         },
         currentIndex: currentPage,
