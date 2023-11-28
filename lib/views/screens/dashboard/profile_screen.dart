@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'chat_page.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -23,11 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       height: double.infinity,
       color: Colors.red,
     ),
-    Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Colors.amber,
-    ),
+    const ChatPage(),
     const AccountPage(),
   ];
 
@@ -68,10 +65,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
-      ),
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('My Profile'),
       ),
       body: PageView.builder(
         itemCount: pages.length,
